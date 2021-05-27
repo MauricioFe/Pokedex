@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Flexo;
+    src: local('Flexo'), url('../fonts/Flexo-Regular.woff2') format('woff2'), url('../fonts/Flexo-Regular.woff') format('woff'), url('Flexo-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: Flexo, sans-serif;
+}
