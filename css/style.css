@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: Flexo;
     src: local('Flexo'), url('../fonts/Flexo-Regular.woff2') format('woff2'), url('../fonts/Flexo-Regular.woff') format('woff'), url('Flexo-Regular.ttf') format('truetype');
@@ -7,4 +8,45 @@
 
 body {
     font-family: Flexo, sans-serif;
+}
+
+.topo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topo .logo {
+    width: 400px;
+}
+
+.container-form {
+    max-width: 1250px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.container-form input {
+    width: 92%;
+    height: 60px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px 0 0 5px;
+    border:none;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.container-form button {
+    width: 8%;
+    padding: 10px;
+    height: 60px;
+    border:none;
+    border-radius: 0 5px 5px 0;
+    background-color: #ee6b2f;
+    
 }
