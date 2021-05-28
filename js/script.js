@@ -47,7 +47,7 @@ async function mapperPokemons() {
         return {
             name: pokemon.name,
             id: pokemon.id,
-            type: pokemon.types.map(type => type.name),
+            type: pokemon.types.map(type => type.type.name),
             weight: pokemon.weight,
             height: pokemon.height,
             image: pokemon.sprites.front_default
