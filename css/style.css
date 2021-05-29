@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: Flexo;
     src: local('Flexo'), url('../fonts/Flexo-Regular.woff2') format('woff2'), url('../fonts/Flexo-Regular.woff') format('woff'), url('Flexo-Regular.ttf') format('truetype');
@@ -36,7 +35,7 @@ body {
     padding: 10px;
     font-size: 1.2rem;
     border-radius: 5px 0 0 5px;
-    border:none;
+    border: none;
     background-color: #ffffff;
     outline: none;
 }
@@ -45,8 +44,70 @@ body {
     width: 8%;
     padding: 10px;
     height: 60px;
-    border:none;
+    border: none;
     border-radius: 0 5px 5px 0;
     background-color: #ee6b2f;
-    
+}
+
+#pokemons {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.card {
+    background: #ee3241;
+    width: 20%;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0 2% 2% 15px;
+    justify-content: center;
+}
+
+.card .card-image {
+    background: rgb(255, 253, 244);
+    border-radius: 50%;
+    margin: 10px auto;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 150px;
+}
+
+.card-content {
+    width: 100%;
+    padding: 0 25px;
+}
+
+.id {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.name {
+    margin-bottom: 2rem;
+}
+
+.peso {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.altura {
+    display: inline-block;
+    margin-bottom: 15px;
 }

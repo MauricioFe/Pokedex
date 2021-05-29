@@ -18,7 +18,7 @@ async function initializeComponents() {
     await fetchAllPokemonsNames(urlAll);
     await fetchPokemonsDetails();
     await mapperPokemons();
-    console.log(pokemons)
+    render();
 }
 
 async function fetchAllPokemonsNames(url) {
@@ -35,7 +35,7 @@ async function fetchAllPokemonsNames(url) {
 async function fetchPokemonsDetails() {
     let i = 0;
     for (const pokemon of pokemonsName) {
-        const request = await fetch(urlBase+ pokemon.name);
+        const request = await fetch(urlBase + pokemon.name);
         const json = await request.json();
         pokemonsDetails.push(json)
     }
@@ -50,9 +50,29 @@ async function mapperPokemons() {
             type: pokemon.types.map(type => type.type.name),
             weight: pokemon.weight,
             height: pokemon.height,
-            image: pokemon.sprites.front_default
+            image: pokemon.sprites.other.dream_world.front_default
         }
     })
+}
+
+function render() {
+    pokemons.forEach(pokemon => {
+        const { name, id, type, weight, height, image } = pokemon
+        const pokemonHtml = ` <div class="card">
+        <div class="card-image">
+            <img src="${image}"
+                alt="${name}">
+        </div>
+        <div class="card-content">
+            <span class="id">Nº${id}</span>
+            <h2 class="name">${name}</h2>
+            <p class="peso">Peso: ${weight / 10}kg</p>
+            <p class="altura">Altura: ${height / 10}m</p>
+            <p class="tipos">Tipos: <span>${type.forEach(tipo => tipo)}</span></p>
+        </div>
+    </div>`
+        pokemonDiv.innerHTML += pokemonHtml;
+    });
 }
 
 
