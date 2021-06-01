@@ -9,7 +9,7 @@ let pokemonDiv = null;
 let pokemons = null;
 
 window.addEventListener("load", () => {
-    initializeComponents()
+    initializeComponents();
 });
 async function initializeComponents() {
     inputFilter = document.querySelector("#inputFilter");
@@ -18,7 +18,9 @@ async function initializeComponents() {
     await fetchAllPokemonsNames(urlAll);
     await fetchPokemonsDetails();
     await mapperPokemons();
-    render();
+    pokemonsFiltered = pokemons
+    render()
+    configFilter();
 }
 
 async function fetchAllPokemonsNames(url) {
@@ -33,7 +35,6 @@ async function fetchAllPokemonsNames(url) {
 }
 
 async function fetchPokemonsDetails() {
-    let i = 0;
     for (const pokemon of pokemonsName) {
         const request = await fetch(urlBase + pokemon.name);
         const json = await request.json();
@@ -56,7 +57,8 @@ async function mapperPokemons() {
 }
 
 function render() {
-    pokemons.forEach(pokemon => {
+    let pokemonsHTML = "<div class='pokemon'>";
+    pokemonsFiltered.forEach(pokemon => {
         const { name, id, type, weight, height, image } = pokemon
         const pokemonHtml = ` <div class="card">
         <div class="card-image">
@@ -68,11 +70,36 @@ function render() {
             <h2 class="name">${name}</h2>
             <p class="peso">Peso: ${weight / 10}kg</p>
             <p class="altura">Altura: ${height / 10}m</p>
-            <p class="tipos">Tipos: <span>${type.forEach(tipo => tipo)}</span></p>
+            <p class="tipos">Tipos: <span>${type}</span></p>
         </div>
     </div>`
-        pokemonDiv.innerHTML += pokemonHtml;
+        pokemonsHTML += pokemonHtml;
     });
+    pokemonDiv.innerHTML = pokemonsHTML;
+}
+
+function configFilter() {
+    inputFilter.addEventListener('keyup', handlerFilterKeyUp)
+    btnFilter.addEventListener('click', handlerFilterButttonClick)
+}
+
+function handlerFilterButttonClick() {
+    const filter = inputFilter.value.toLowerCase().trim();
+    pokemonsFiltered = pokemons.filter(item => {
+        return item.name.toLowerCase().includes(filter);
+    });
+    render()
+}
+
+function handlerFilterKeyUp({ key }) {
+    if (inputFilter.value === "") {
+        pokemonsFiltered = pokemons;
+        render()
+    }
+    if (key !== 'Enter') {
+        return;
+    }
+    handlerFilterButttonClick();
 }
 
 
