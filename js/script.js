@@ -112,7 +112,7 @@ function handlerFilterKeyUp({ key }) {
 
 async function detailsPokemon(id) {
     let pokemon = await fetchPokemonsDetailsID(id);
-    document.querySelector(".modal").innerHTML += `
+    document.querySelector(".modal").innerHTML = `
     <div id="modal" class="">
     <div class="content">
         <div class="header">
