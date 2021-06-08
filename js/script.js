@@ -7,6 +7,9 @@ let inputFilter = null;
 let btnFilter = null;
 let pokemonDiv = null;
 let pokemons = null;
+let cardPokemon = null;
+let modal = null;
+let close = null;
 
 window.addEventListener("load", () => {
     initializeComponents();
@@ -42,6 +45,11 @@ async function fetchPokemonsDetails() {
     }
 }
 
+async function fetchPokemonsDetailsID(id) {
+    const request = await fetch(urlBase + id);
+    const json = await request.json();
+    return json;
+}
 
 async function mapperPokemons() {
     pokemons = pokemonsDetails.map(pokemon => {
@@ -60,7 +68,7 @@ function render() {
     let pokemonsHTML = "<div class='pokemon'>";
     pokemonsFiltered.forEach(pokemon => {
         const { name, id, type, weight, height, image } = pokemon
-        const pokemonHtml = ` <div class="card">
+        const pokemonHtml = ` <div class="card" id="${id}" onclick="detailsPokemon(${pokemon.id})">
         <div class="card-image">
             <img src="${image}"
                 alt="${name}">
@@ -102,4 +110,36 @@ function handlerFilterKeyUp({ key }) {
     handlerFilterButttonClick();
 }
 
+async function detailsPokemon(id) {
+    let pokemon = await fetchPokemonsDetailsID(id);
+    document.querySelector(".modal").innerHTML += `
+    <div id="modal" class="">
+    <div class="content">
+        <div class="header">
+            <h1>Titulo Pokemon</h1>
+            <a href="#" onClick="fechar()">Fechar</a>
+        </div>
+        <div class="container">
+            <div class="img-pokemon">
+                <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+            </div>
+            <div class="content-pokemon">
+                <div class="initial-data">
+                    <span class="id">Nº${pokemon.id}</span>
+                    <h2 class="name">${pokemon.name}</h2>
+                    <p class="peso">Peso: ${pokemon.weight / 10}kg</p>
+                    <p class="altura">Altura: ${pokemon.height / 10}m</p>
+                    <p class="tipos">Tipos: <span>${pokemon.type}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    `
 
+
+}
+
+function fechar() {
+    document.querySelector("#modal").classList.add("hide")
+}
