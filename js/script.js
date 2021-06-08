@@ -121,7 +121,7 @@ async function detailsPokemon(id) {
         </div>
         <div class="container">
             <div class="img-pokemon">
-                <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+                <img src="${pokemon.sprites.other.dream_world.front_default}" width="250px" alt="${pokemon.name}">
             </div>
             <div class="content-pokemon">
                 <div class="initial-data">
@@ -129,7 +129,7 @@ async function detailsPokemon(id) {
                     <h2 class="name">${pokemon.name}</h2>
                     <p class="peso">Peso: ${pokemon.weight / 10}kg</p>
                     <p class="altura">Altura: ${pokemon.height / 10}m</p>
-                    <p class="tipos">Tipos: <span>${pokemon.type}</span></p>
+                    <p class="tipos">Tipos: <span>${pokemon.types.map(type => type.type.name)}</span></p>
                 </div>
             </div>
         </div>
